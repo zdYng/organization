@@ -99,4 +99,50 @@ public class CommonResult extends HashMap<String,Object> {
     {
         return new CommonResult(HttpStatus.SUCCESS, msg, data);
     }
+
+    /**
+     * 返回错误消息
+     *
+     * @return
+     */
+    public static CommonResult error()
+    {
+        return CommonResult.error("操作失败");
+    }
+
+    /**
+     * 返回错误消息
+     *
+     * @param msg 返回内容
+     * @return 警告消息
+     */
+    public static CommonResult error(String msg)
+    {
+        return CommonResult.error(msg, null);
+    }
+
+    /**
+     * 返回错误消息
+     *
+     * @param msg 返回内容
+     * @param data 数据对象
+     * @return 警告消息
+     */
+    public static CommonResult error(String msg, Object data)
+    {
+        return new CommonResult(HttpStatus.ERROR, msg, data);
+    }
+
+    /**
+     * 返回错误消息
+     *
+     * @param code 状态码
+     * @param msg 返回内容
+     * @return 警告消息
+     */
+    public static CommonResult error(int code, String msg)
+    {
+        return new CommonResult(code, msg, null);
+    }
+
 }

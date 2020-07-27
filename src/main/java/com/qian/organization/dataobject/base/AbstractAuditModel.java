@@ -24,16 +24,6 @@ import java.util.Date;
 @Data
 public abstract class AbstractAuditModel implements Serializable {
 
-    /**
-     * 主键
-     */
-//    @Id
-//    private Long id;
-    @Id
-    @GeneratedValue(generator = "jpa-uuid")
-    @GenericGenerator(name="jpa-uuid", strategy = "uuid")
-    @Column(length = 32)
-    private String id;
 
     /**
      * 创建时间
@@ -54,6 +44,11 @@ public abstract class AbstractAuditModel implements Serializable {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date UpdateTime;
 
+    /** 创建者 */
+    private String createBy;
+
+    /** 更新者 */
+    private String updateBy;
 
     public void setCreateBy(String createBy){
         this.createBy = createBy;

@@ -2,6 +2,7 @@ package com.qian.organization.dataobject;
 
 import com.qian.organization.dataobject.base.AbstractAuditModel;
 import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
 
 
 import javax.persistence.*;
@@ -24,6 +25,17 @@ import java.util.List;
 @Entity
 @Table(name = "department")
 public class Department  extends AbstractAuditModel {
+
+    /**
+     * 主键
+     */
+//    @Id
+//    private Long id;
+    @Id
+    @GeneratedValue(generator = "jpa-uuid")
+    @GenericGenerator(name="jpa-uuid", strategy = "uuid")
+    @Column(length = 32)
+    private String id;
 
     /**
      * 部门名称
@@ -68,9 +80,13 @@ public class Department  extends AbstractAuditModel {
     /** 备注 */
     private String remarks;
 
+    /** 显示顺序 */
+    private String orderNum;
+
     /**
      * 子部门
      */
+    @OneToMany
     private List<Department> children = new ArrayList<Department>();
 
     public List<Department> getChildren(){
@@ -79,6 +95,31 @@ public class Department  extends AbstractAuditModel {
 
     public void setChildren(List<Department> children){
         this.children = children;
+    }
+
+    public String getAncestors()
+    {
+        return ancestors;
+    }
+
+    public void setAncestors(String ancestors)
+    {
+        this.ancestors = ancestors;
+    }
+
+    public String getDeptId()
+    {
+        return id;
+    }
+
+    public void setDeptId(String deptId)
+    {
+        this.id = deptId;
+    }
+
+    public String getParentId()
+    {
+        return parentId;
     }
 
 

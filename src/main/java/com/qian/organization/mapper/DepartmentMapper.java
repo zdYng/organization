@@ -1,27 +1,17 @@
-package com.qian.organization.repository;
+package com.qian.organization.mapper;
 
+import com.qian.organization.VO.TreeSelect;
 import com.qian.organization.dataobject.Department;
-import com.qian.organization.repository.base.BaseRepository;
 import feign.Param;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
-import java.util.Collection;
 import java.util.List;
 
 /**
  * @Author: Coco
- * @Date: 2020.05.20 13:00
+ * @Date: 2020.05.21 13:30
  * @Version: v0.0.1
  */
-
-
-@Repository
-
-
-public interface DepartmentRepository extends BaseRepository {
-
-    Collection<Department> findDepartmentsByLevel(Integer level);
+public interface DepartmentMapper {
 
     /**
      * 查询部门管理数据
@@ -30,7 +20,7 @@ public interface DepartmentRepository extends BaseRepository {
      * @return 部门信息集合List
      */
     List<Department> selectDeptList(Department dept);
-//    List<Department> findByParentId
+
 
     /**
      * 根据部门ID查询信息
@@ -87,7 +77,7 @@ public interface DepartmentRepository extends BaseRepository {
      * @param dept 部门信息
      * @return 结果
      */
-    public int departmentToUpdate(Department dept);
+    public int updateDept(Department dept);
 
     /**
      * 修改所在部门的父级部门状态
@@ -112,5 +102,5 @@ public interface DepartmentRepository extends BaseRepository {
      */
     public int deleteDeptById(String deptId);
 
-
+    int departmentToUpdate(Department dept);
 }

@@ -2,6 +2,7 @@ package com.qian.organization.dataobject;
 
 import com.qian.organization.dataobject.base.AbstractAuditModel;
 import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -25,6 +26,18 @@ import java.util.Date;
 @Table(name = "user")
 @ToString(callSuper = true)
 public class User extends AbstractAuditModel {
+
+    /**
+     * 主键
+     */
+//    @Id
+//    private Long id;
+    @Id
+    @GeneratedValue(generator = "jpa-uuid")
+    @GenericGenerator(name="jpa-uuid", strategy = "uuid")
+    @Column(length = 32)
+    private String id;
+
     /**
      * 用户名
      */

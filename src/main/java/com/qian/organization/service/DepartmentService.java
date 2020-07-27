@@ -31,6 +31,8 @@ public interface DepartmentService {
      */
     List<Department> buildDeptTree(List<Department> depts);
 
+
+
     /**
      * 下拉树结构
      * @param depts 部门列表
@@ -47,6 +49,52 @@ public interface DepartmentService {
      */
     Department selectDeptById(String deptId);
 
+    /**
+     * 根据ID查询所有子部门（正常状态）
+     *
+     * @param deptId 部门ID
+     * @return 子部门数
+     */
+    public int selectNormalChildrenDeptById(String deptId);
 
+    /**
+     * 是否存在部门子节点
+     *
+     * @param deptId 部门ID
+     * @return 结果
+     */
+    public boolean hasChildByDeptId(String deptId);
+
+    /**
+     * 校验部门名称是否唯一
+     *
+     * @param dept 部门信息
+     * @return 结果
+     */
+    public String checkDeptNameUnique(Department dept);
+
+    /**
+     * 新增保存部门信息
+     *
+     * @param dept 部门信息
+     * @return 结果
+     */
+    public int insertDept(Department dept);
+
+    /**
+     * 修改保存部门信息
+     *
+     * @param dept 部门信息
+     * @return 结果
+     */
+    public int departmentToUpdate(Department dept);
+
+    /**
+     * 删除部门管理信息
+     *
+     * @param deptId 部门ID
+     * @return 结果
+     */
+    public int deleteDeptById(String deptId);
 
 }
